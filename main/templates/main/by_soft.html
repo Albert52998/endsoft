@@ -1,0 +1,61 @@
+{% extends 'main/basic.html' %}
+
+{% comment %} {% load static %} {% endcomment %}
+
+{% block title %}ENDSOFT{% endblock %}
+
+{% block content_main %}
+  <article class="material" id="material">
+    <div class="material_item">
+      <div class="details">
+        <div class="material-images">
+          <img class="material__img" src="{{ current_soft.img.url }}">
+        </div>
+          <!--
+                  <picture>
+                      <img src="img/2sy4s7v5rjk0og0koo.png">
+                  </picture>
+          -->
+        </img>
+        <div class="material__inner"> <span class="material__title">{{ current_soft.title }}</span>
+          <div class="material__meta"> <span class="pubdate">Опубликовано {{ current_soft.published }}</span> <span class="cat icon"><a class="cat" style="color: #888;"><img src="{{ current_soft.category.parent_category.img.url }}" width="16px"
+                  style="transform: translateY(2px); margin-right: 2px;">{{ current_soft.category.name }}</a></span>
+            <span class="downloads icon icon-downloads"><span class="status" id="status">{{ current_soft.counter }} скачиваний </span></span>
+          </div>
+          <!--
+                  <div class="material__tools">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+          -->
+        </div>
+      </div>
+      <div class="material__description">
+        <p>{{ current_soft.content }}</p>
+      </div>
+      <!--
+              <div class="material__download">
+                <div>
+                  <img src="img/download.svg">
+                  <span>Скачать</span>
+                </div>
+              </div>
+      -->
+
+      <div class="download">
+        <header>
+          <h2>Скачать</h2>
+        </header>
+        <div id="download">
+          <div class="dwrapper">
+            <div class="d-btn-wrapper" style="text-align: center;">
+              <a id="download-start" href="{% url 'soft_downloads_count' current_soft.pk %}"> <strong>СКАЧАТЬ</strong> <small>С нашего сервера</small><div><span>{{ current_soft.file.size|filesizeformat }}</span></div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+{% endblock %}

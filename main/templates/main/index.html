@@ -1,0 +1,230 @@
+{% extends 'main/basic.html' %}
+
+{% block title %}ENDSOFT{% endblock %}
+
+{% block main_title %}весь софт{% endblock %}
+{% block content_main %}
+
+  {% for soft in page_object.object_list %}
+  <article class="soft">
+    <div class="poster"><img src="{{ soft.img.url }}"></div>
+    <div class="details">
+      <h1><a href="{% url 'by_soft' soft.pk %}">{{ soft.title }}</a></h1>
+      <div class="meta">
+        <span class="pubdate">{{ soft.published|date:"d.m.Y" }}</span>
+
+
+        <span class="cat icon"><a href="" class="cat"><img src="{{ soft.category.parent_category.img.url }}"
+              width="16px" style="transform: translateY(2px); margin-right: 2px;">
+            {{ soft.category.name }}</a></span>
+
+
+        <span class="downloads icon icon-downloads" id="downloads"><span class="status" id="status">{{ soft.counter }} скачиваний</span></span>
+      </div>  
+      <blockquote>
+        <p>{{ soft.content }}</p>
+      </blockquote>
+      <!--<div class="actions">
+        <a href="/windows-software/win-10-tweaker-luchshij-tviker-dlya-windows?download"
+          class="btn btn-green">СКАЧАТЬ <span class="label">1 MB</span></a>
+        {% comment %} <a href="/windows-software/win-10-tweaker-luchshij-tviker-dlya-windows"
+          class="btn btn-darkblue">ПОДРОБНЕЕ</a> {% endcomment %}
+      </div>-->
+    </div>
+  </article>
+  {% endfor %}
+{% endblock %}
+
+
+{% block paginator %}
+  <!-- <section id="paginator">
+    <header>
+      <h1>СТРАНИЦЫ</h1>
+    </header>
+    <div class="paginator-wrapper">
+      <small>НАЧАЛО</small>
+      <div class="paginator-box">
+
+        <div class="pb-start" id='pb-start' style="left: 0px;">
+          <nav>
+            <ul>
+              {% for n in page_object.paginator.page_range %}
+                {% if n > page_object.number|add:-6 and n < page_object.number|add:4 %}
+                  {% if page_object.number == n and n < 10 %}
+                    <li>
+                      <a class="paginator__num current" href="?page={{ n }}">{{ n }}</a>
+                    </li>
+                  {% elif n < 10 %}
+                    <li>
+                      <a class="paginator__num" href="?page={{ n }}">{{ n }}</a>
+                    </li>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </ul> 
+          </nav>
+        </div>
+
+        <div class="pb-end" id='pb-end'>
+          <nav>
+            <ul>
+              {% for n in page_object.paginator.page_range %}
+                {% if n > page_object.number|add:-6 and n < page_object.number|add:4 %}
+                  {% if page_object.number == n and n > 10 %}
+                    <li>
+                      <a class="paginator__num current" href="?page={{ n }}">{{ n }}</a>
+                    </li>
+                  {% elif n > 10 %}
+                    <li>
+                      <a class="paginator__num" href="?page={{ n }}">{{ n }}</a>
+                    </li>
+                  {% endif %} 
+                {% endif %} 
+              {% endfor %}
+            </ul>
+          </nav>
+        </div>
+
+        
+
+
+
+
+
+
+        <div class="pb-start" id='pb-start' style="left: 0px;">
+          <nav>
+            <ul>
+
+              {% comment %} {% if page_object.number|add:'-4' > 0 %} 
+                <li>
+                  <a class="paginator__num current">...</a>
+                </li>
+              {% endif %} {% endcomment %}
+
+
+
+              {% comment %} {% if page_object.number|add:'-5' > 0 %}
+                <li>
+                  <a class="paginator__num" href="?page={{ page_object.number|add:'-5' }}">{{ page_object.number|add:'-5' }}</a>
+                </li>
+              {% endif %}
+              {% if page_object.number|add:'-4' > 0 %}
+                <li>
+                  <a class="paginator__num" href="?page={{ page_object.number|add:'-4' }}">{{ page_object.number|add:'-4' }}</a>
+                </li>
+              {% endif %}
+              {% if page_object.number|add:'-3' > 0 %}
+                <li>
+                  <a class="paginator__num" href="?page={{ page_object.number|add:'-3' }}">{{ page_object.number|add:'-3' }}</a>
+                </li>
+              {% endif %}
+              {% if page_object.number|add:'-2' > 0 %}
+                <li>
+                  <a class="paginator__num" href="?page={{ page_object.number|add:'-2' }}">{{ page_object.number|add:'-2' }}</a>
+                </li>
+              {% endif %}
+              {% if page_object.number|add:'-1' > 0 %}
+                <li>
+                  <a class="paginator__num" href="?page={{ page_object.number|add:'-1' }}">{{ page_object.number|add:'-1' }}</a>
+                </li>
+              {% endif %}
+
+              <li>
+                <a class="paginator__num current" href="?page={{ page_object.number }}">{{ page_object.number }}</a>
+              </li>
+
+              {% if page_object.number|add:'1' <= paginator.num_pages %}
+                <li>
+                  <a class="paginator__num" href="?page={{ page_object.number|add:'1' }}">{{ page_object.number|add:'1' }}</a>
+                </li>
+              {% endif %}
+              {% if page_object.number|add:'2' <= paginator.num_pages %}
+                <li>
+                  <a class="paginator__num" href="?page={{ page_object.number|add:'2' }}">{{ page_object.number|add:'2' }}</a>
+                </li>
+              {% endif %}
+              {% if page_object.number|add:'3' <= paginator.num_pages %}
+                <li>
+                  <a class="paginator__num" href="?page={{ page_object.number|add:'3' }}">{{ page_object.number|add:'3' }}</a>
+                </li>
+              {% endif %} {% endcomment %}
+
+              {% comment %} {% if page_object.number|add:'4' <= paginator.num_pages %}
+                <li>
+                  <a class="paginator__num current">...</a>
+                </li>
+              {% endif %}    {% endcomment %}
+
+
+
+              {% for n in page_object.paginator.page_range %}
+                {% if n > page_object.number|add:-6 and n < page_object.number|add:4 %}
+                  {% if page_object.number == n and n < 10 %}
+                    <li>
+                      <a class="paginator__num current" href="?page={{ n }}">{{ n }}</a>
+                    </li>
+                  {% elif n < 10 %}
+                    <li>
+                      <a class="paginator__num" href="?page={{ n }}">{{ n }}</a>
+                    </li>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </ul> 
+          </nav>
+        </div>
+        <div class="pb-end" id='pb-end'>
+          <nav>
+            <ul>
+              {% for n in page_object.paginator.page_range %}
+                {% if n > page_object.number|add:-6 and n < page_object.number|add:4 %}
+                  {% if page_object.number == n and n > 10 %}
+                    <li>
+                      <a class="paginator__num current" href="?page={{ n }}">{{ n }}</a>
+                    </li>
+                  {% elif n > 10 %}
+                    <li>
+                      <a class="paginator__num" href="?page={{ n }}">{{ n }}</a>
+                    </li>
+                  {% endif %} 
+                {% endif %} 
+              {% endfor %}
+            </ul>
+          </nav>
+        </div>
+        
+
+
+      </div>
+      <small>КОНЕЦ</small>
+    </div>
+  </section> -->
+
+  {% if not search_query %}
+    <div id="pagination" class="pagination">
+      <div class="pagination__content">
+        <span class="pagination__title">страницы</span>
+        <div class="pagination__wrapper">
+          <div class="pagination__box">
+            {% if page_object.number|add:-4 > 0 %}
+              <li class="pagination__item"><a class="pagination__num current pagination-more">...</a></li>
+            {% endif %}
+            {% for i in page_object.paginator.page_range %}
+              {% if page_object.number == i %}
+                <li class="pagination__item"><a class="pagination__num current" id="current-num" href="?page={{ i }}">{{ i }}</a></li>
+              {% elif i > page_object.number|add:-4 and i < page_object.number|add:4 %}
+                <li class="pagination__item"><a class="pagination__num" href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            
+            {% if page_object.number|add:4 <= paginator.num_pages %}
+              <li class="pagination__item"><a class="pagination__num current pagination-more">...</a></li>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
