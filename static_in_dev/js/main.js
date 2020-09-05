@@ -179,8 +179,8 @@ mobileSearch.addEventListener("click", function() {
   }
 });
 
-function showForm(){ if(x.matches) searchForm.style.display = 'block'; }
-function hideForm(){ if(f.matches) searchForm.style.display = 'none'; }
+function showForm(){ if(x.matches) searchForm.style.display = 'block' }
+function hideForm(){ if(f.matches) searchForm.style.display = 'none' }
 
 let x = window.matchMedia("(min-width: 1199px)");
 showForm();
