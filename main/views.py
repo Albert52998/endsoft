@@ -9,43 +9,44 @@ from django.core.paginator import Paginator
 
 
 def index(request):
-    search_query = request.GET.get('search', '')
-
-    if search_query:
-        softs = Soft.objects.filter(title__icontains=search_query)
-    else:
-        softs = Soft.objects.all()
-
-    paginator = Paginator(softs, 5)
-
-    page_number = request.GET.get('page', 1)
-    page = paginator.get_page(page_number)
-
-    is_paginated = page.has_other_pages()
-
-    # if page.has_previous():
-    #     prev_url = f'?page={page.previous_page_number()}'
+    # search_query = request.GET.get('search', '')
+    #
+    # if search_query:
+    #     softs = Soft.objects.filter(title__icontains=search_query)
     # else:
-    #     prev_url = ''
-
-    # if page.has_next():
-    #     next_url = f'?page={page.next_page_number()}'
-    # else:
-    #     next_url = ''
-
-
-    # form = SoftForm()
-
-    categories = Category.objects.filter(parent_category=None)
-
-    context = {
-        'softs': softs, 
-        'categories': categories, 
-        'page_object': page, 
-        'paginator': paginator, 
-        'search_query': search_query
-    }
-    return render(request, 'main/index.html', context)
+    #     softs = Soft.objects.all()
+    #
+    # paginator = Paginator(softs, 5)
+    #
+    # page_number = request.GET.get('page', 1)
+    # page = paginator.get_page(page_number)
+    #
+    # is_paginated = page.has_other_pages()
+    #
+    # # if page.has_previous():
+    # #     prev_url = f'?page={page.previous_page_number()}'
+    # # else:
+    # #     prev_url = ''
+    #
+    # # if page.has_next():
+    # #     next_url = f'?page={page.next_page_number()}'
+    # # else:
+    # #     next_url = ''
+    #
+    #
+    # # form = SoftForm()
+    #
+    # categories = Category.objects.filter(parent_category=None)
+    #
+    # context = {
+    #     'softs': softs,
+    #     'categories': categories,
+    #     'page_object': page,
+    #     'paginator': paginator,
+    #     'search_query': search_query
+    # }
+    # return render(request, 'main/index.html', context)
+    return render(request, '')
 
 
 def soft_downloads_count(request, soft_id):
@@ -74,7 +75,8 @@ def by_category(request, category_id):
     categories = Category.objects.filter(parent_category=None)
     current_category = Category.objects.get(pk=category_id)
     context = {'softs': softs, 'categories': categories, 'current_category': current_category}
-    return render(request, 'main/by_category.html', context)
+    # return render(request, 'main/by_category.html', context)
+    return render(request, '')
 
 
 def by_soft(request, soft_id):
@@ -82,4 +84,5 @@ def by_soft(request, soft_id):
     categories = Category.objects.filter(parent_category=None)
     current_soft = Soft.objects.get(pk=soft_id)
     context = {'softs': softs, 'categories': categories, 'current_soft': current_soft}
-    return render(request, 'main/by_soft.html', context)
+    # return render(request, 'main/by_soft.html', context)
+    return render(request, '')

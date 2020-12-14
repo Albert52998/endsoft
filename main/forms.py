@@ -1,4 +1,4 @@
-from django.forms import ModelForm #, TextInput
+# from django.forms import ModelForm #, TextInput
 
 # from .models import Soft
 # class SoftForm(ModelForm):

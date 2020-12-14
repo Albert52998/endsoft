@@ -1,0 +1,22 @@
+{
+  "name": "endsoft",
+  "version": "1.0.0",
+  "description": "ENDSOFT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Albert52998/endsoft.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Albert52998/endsoft/issues"
+  },
+  "homepage": "https://github.com/Albert52998/endsoft#readme",
+  "dependencies": {
+    "create-react-app": "^4.0.1"
+  }
+}
